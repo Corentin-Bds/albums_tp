@@ -1,0 +1,38 @@
+body {
+    background: black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+img {
+    width: 20%;
+    height: 300px;
+    margin-left: 70px;
+    margin-top: 10VH;
+    border-radius: 30px;
+}
+
+div {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+a {
+    margin-right: 40px;
+    font-weight: bold;
+    color: white;
+    text-transform: capitalize;
+    border: 2px solid grey;
+    padding: 15px;
+    background: gray;
+    border-radius: 20px;
+}
+
+a:hover {
+    color: red;
+    background: white;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+}
