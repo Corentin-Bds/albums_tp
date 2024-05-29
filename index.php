@@ -8,7 +8,7 @@
 </head>
 <body>
 <?php 
-$cnx = mysqli_connect("localhost", "root", "", "album_tp");
+$cnx = mysqli_connect("localhost", "root", "", "albums");
 
 if (mysqli_connect_errno()){
     echo "Echec de la connexion : ".mysqli_connect_error();
@@ -25,16 +25,18 @@ echo "<div>";
 while ($ligne = mysqli_fetch_array($res)) {
     echo '<a href="index.php?id='.$ligne["idAlb"].'">'.$ligne["nomAlb"].'</a>';
 }
-
+echo "<a href='ajouter_album.php'>+</a>";
 echo "</div>";
 
 $sql = "SELECT * from comporter, photos WHERE comporter.idPh = photos.idPh AND idAlb =".$_GET["id"];
 $res = mysqli_query($cnx, $sql);
-
+echo "<div id='test1'";
+echo "<div id='test'>";
 while ($ligne = mysqli_fetch_array($res)) {
     echo '<img src="photos/'.$ligne["nomPh"].'"/>';
 }
-
+echo "</div>";
+echo "<div>";
 mysqli_free_result($res);
 
 mysqli_close($cnx);

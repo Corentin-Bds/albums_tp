@@ -10,24 +10,30 @@
             <title>Formulaire d'ajout d'un album</title>
         </head>
         <body>
-            <form action="" method="post" class="form-example">
-                <div class="form-example">
-                    <label for="name">Enter your name: </label>
-                    <input type="text" name="name" id="name" required />
+            <form action="" method="post">
+                <div>
+                    <label for="albums">Entrer le nom de votre album :</label>
+                    <input type="text" name="nomAlb" required />
                 </div>
-                <div class="form-example">
-                    <label for="email">Enter your email: </label>
-                    <input type="email" name="email" id="email" required />
-                </div>
-                <div class="form-example">
-                    <input type="submit" value="Subscribe!" />
+                <div>
+                    <input type="submit" value="Envoyer" />
                 </div>
             </form>
         </body>
         </html>
+    <?php
     }
     //traitement du formulaire
     else {
+        $cnx = mysqli_connect("localhost", "root", "", "albums");
+        if (mysqli_connect_errno()){
+            echo "Echec de la connexion : ".mysqli_connect_error();
+            exit();
+        }
+        $sql = "INSERT INTO albums SET nomAlb='".$_POST["nomAlb"]."'";
+        mysqli_query($cnx, $sql);
 
+        $id = mysqli_insert_id($cnx);
+        header("Location: index.php?id=".$id);
     }
 ?>

@@ -6,17 +6,25 @@ body {
 img {
     width: 20%;
     height: 300px;
-    margin-left: 70px;
+    margin-left: 30px;
     margin-top: 10VH;
+    margin-bottom: 5VH;
     border-radius: 30px;
 }
 
-div {
+#test1 {
     display: flex;
-    justify-content: space-evenly;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+div {
+    margin-top: 40px;
+    text-align: center;
 }
 
 a {
+    
     margin-right: 40px;
     font-weight: bold;
     color: white;
@@ -28,8 +36,8 @@ a {
 }
 
 a:hover {
-    color: red;
-    background: white;
+    color: black;
+    background: yellow;
 }
 
 h1 {
