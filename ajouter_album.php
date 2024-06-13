@@ -25,11 +25,14 @@
     }
     //traitement du formulaire
     else {
+        
         $cnx = mysqli_connect("localhost", "root", "", "albums");
+
         if (mysqli_connect_errno()){
             echo "Echec de la connexion : ".mysqli_connect_error();
             exit();
         }
+
         $sql = "INSERT INTO albums SET nomAlb='".$_POST["nomAlb"]."'";
         mysqli_query($cnx, $sql);
 

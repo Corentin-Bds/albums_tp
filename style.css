@@ -1,5 +1,4 @@
 body {
-    background: black;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -23,8 +22,7 @@ div {
     text-align: center;
 }
 
-a {
-    
+#nav {
     margin-right: 40px;
     font-weight: bold;
     color: white;
@@ -34,6 +32,9 @@ a {
     background: gray;
     border-radius: 20px;
 }
+#nav>a{
+    margin-right: 40px;
+}
 
 a:hover {
     color: black;
@@ -42,5 +43,9 @@ a:hover {
 
 h1 {
     text-align: center;
-    color: white;
+    color: black;
+}
+
+#test1 {
+    display: flex;
 }
