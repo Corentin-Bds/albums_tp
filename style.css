@@ -3,12 +3,10 @@ body {
 }
 
 img {
-    width: 20%;
-    height: 300px;
+    width: 80%;
     margin-left: 30px;
     margin-top: 10VH;
     margin-bottom: 5VH;
-    border-radius: 30px;
 }
 
 #test1 {
@@ -38,14 +36,29 @@ div {
 
 a:hover {
     color: black;
-    background: yellow;
+    background: red;
 }
 
 h1 {
     text-align: center;
     color: black;
 }
-
-#test1 {
+#test2 {
     display: flex;
+    text-align: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+aside {
+    width: 30%;
+    margin-bottom: 5VH;
+}
+aside>a {
+    padding: 20px;
+    background: black;
+    margin-left: 20px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
 }

@@ -32,15 +32,14 @@
 
     $sql = "SELECT * from comporter, photos WHERE comporter.idPh = photos.idPh AND idAlb =".$_GET["id"];
     $res = mysqli_query($cnx, $sql);
-    echo "<div id='test1'";
-    echo "<div id='test'>";
+    echo "<div id='test2'>";
     while ($ligne = mysqli_fetch_array($res)) {
-        echo "<div class='test2'>";
+        echo "<aside class='photo'>";
         echo '<img src="photos/'.$ligne["nomPh"].'"/>';
-        echo "<a href='modifier_photo.php' class='lien'>Modifier la photo</a>";
-        echo "</div>";
+        echo "<a href='modifier_photo.php' class='lien'>Modifier</a>";
+        echo "<a href='#'>Supprimer</a>";
+        echo "</aside>";
     }
-    echo "</div>";
     echo "</div>";
     mysqli_free_result($res);
 
