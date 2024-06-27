@@ -1,50 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <link rel="" href="ajouter_album.php">
+    <title>TP PHP/SQL</title>
 </head>
 <body>
-<?php 
-    $cnx = mysqli_connect("localhost", "root", "", "albums");
+    
+<h1>Mes albums</h1>
+<?php
+$cnx = mysqli_connect("localhost", "root", "", "albums");
 
-    if (mysqli_connect_errno()){
-        echo "Echec de la connexion : ".mysqli_connect_error();
-        exit();
-    }
+if(mysqli_connect_errno()){
+    echo "Echec de la connexion : ".mysqli-connect_error();
+    exit();
+}
 
-    $sql = "SELECT * from albums";
+// Requête SQL pour sélectionner un idAlb aléatoire
+if(!isset($_GET["id"])){
+    $sql = "SELECT idAlb FROM albums ORDER BY RAND() LIMIT 1";
     $res = mysqli_query($cnx, $sql);
+    $_GET["id"] = mysqli_fetch_array($res)["idAlb"];
+}
 
-    echo "<h1>Mes albums</h1>";
+$sql = "SELECT * from albums";
+$res = mysqli_query($cnx, $sql);
 
-    echo "<div id='nav'>";
+echo '<div>';
+while ($ligne = mysqli_fetch_array($res)){
+    echo '<a href="index.php?id='.$ligne['idAlb'].'">'.$ligne['nomAlb'].'</a><br/>';
+}
+echo '<a href="ajouter_album.php">+</a>';
+echo '<a href="modifier_album.php?id='.$_GET["id"].'">!</a>';
+echo '<a href="supprimer_album.php?id='.$_GET["id"].'">X</a>';
+echo '</div>';
 
-    while ($ligne = mysqli_fetch_array($res)) {
-        echo '<a href="index.php?id='.$ligne["idAlb"].'">'.$ligne["nomAlb"].'</a>';
-    }
-    echo "<a href='ajouter_album.php'>Ajouter album</a>";
-    echo "<a href='modifier_album.php'>Modifier album</a>";
-    echo "<a href='supprimer_album.php'>Supprimer album</a>";
-    echo "</div>";
+$sql = "SELECT * from comporter, photos WHERE comporter.idPh=photos.idPh AND idAlb=".$_GET["id"];
+$res = mysqli_query($cnx, $sql);
 
-    $sql = "SELECT * from comporter, photos WHERE comporter.idPh = photos.idPh AND idAlb =".$_GET["id"];
-    $res = mysqli_query($cnx, $sql);
-    echo "<div id='test2'>";
-    while ($ligne = mysqli_fetch_array($res)) {
-        echo "<aside class='photo'>";
-        echo '<img src="photos/'.$ligne["nomPh"].'"/>';
-        echo "<a href='modifier_photo.php' class='lien'>Modifier</a>";
-        echo "<a href='#'>Supprimer</a>";
-        echo "</aside>";
-    }
-    echo "</div>";
-    mysqli_free_result($res);
+while ($ligne = mysqli_fetch_array($res)){
+    echo '<img src="photos/'.$ligne['nomPh'].'" />';
+    echo '<a href="modifier_photo.php?idAlb='.$_GET['id'].'&idPh='.$ligne['idPh'].'">! </a>';
+    echo '<a href="supprimer_photo.php?idAlb='.$_GET['id'].'&idPh='.$ligne['idPh'].'"> X</a>';
+}
 
-    mysqli_close($cnx);
+echo '<a href="ajouter_photo.php"> +</a>';
 
+mysqli_free_result($res);
 
-
+mysqli_close($cnx);
 ?>
+
+</body>
+</html>
+
+<!--
+    Create
+    Read
+    Update
+    Delete
+-->
