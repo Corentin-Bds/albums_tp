@@ -1,4 +1,5 @@
 <?php
+
 // Connexion BDD
 $cnx = mysqli_connect("localhost", "root", "", "albums");
 

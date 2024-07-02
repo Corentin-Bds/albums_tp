@@ -32,18 +32,19 @@ echo '<div>';
 while ($ligne = mysqli_fetch_array($res)){
     echo '<a href="index.php?id='.$ligne['idAlb'].'">'.$ligne['nomAlb'].'</a><br/>';
 }
+echo '<a href="corbeille.php">Corbeille</a>';
 echo '<a href="ajouter_album.php">+</a>';
 echo '<a href="modifier_album.php?id='.$_GET["id"].'">!</a>';
 echo '<a href="supprimer_album.php?id='.$_GET["id"].'">X</a>';
 echo '</div>';
 
-$sql = "SELECT * from comporter, photos WHERE comporter.idPh=photos.idPh AND idAlb=".$_GET["id"];
+$sql = "SELECT photos.idPh, photos.nomPh FROM comporter JOIN photos ON comporter.idPh = photos.idPh WHERE comporter.idAlb = " . $_GET["id"] . " AND photos.visible = 1";
 $res = mysqli_query($cnx, $sql);
 
 while ($ligne = mysqli_fetch_array($res)){
     echo '<img src="photos/'.$ligne['nomPh'].'" />';
     echo '<a href="modifier_photo.php?idAlb='.$_GET['id'].'&idPh='.$ligne['idPh'].'">! </a>';
-    echo '<a href="supprimer_photo.php?idAlb='.$_GET['id'].'&idPh='.$ligne['idPh'].'"> X</a>';
+    echo '<a href="retirerPhoto.php?idAlb=' . $_GET['id'] . '&idPh=' . $ligne['idPh'] . '"> X</a>';
 }
 
 echo '<a href="ajouter_photo.php"> +</a>';
