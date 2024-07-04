@@ -11,6 +11,11 @@
     
 <h1>Mes albums</h1>
 <?php
+
+session_start();
+
+
+
 $cnx = mysqli_connect("localhost", "root", "", "albums");
 
 if(mysqli_connect_errno()){
@@ -36,6 +41,13 @@ echo '<a href="corbeille.php">Corbeille</a>';
 echo '<a href="ajouter_album.php">+</a>';
 echo '<a href="modifier_album.php?id='.$_GET["id"].'">!</a>';
 echo '<a href="supprimer_album.php?id='.$_GET["id"].'">X</a>';
+if (isset($_SESSION['auth']) && $_SESSION['auth'] === true) {
+    echo "<p>Connecté</p>";
+    echo '<a href="disconnect.php">Se déconnecter</a>';
+} else {
+    echo '<a href="login.php">Login</a>';
+}
+
 echo '</div>';
 
 $sql = "SELECT photos.idPh, photos.nomPh FROM comporter JOIN photos ON comporter.idPh = photos.idPh WHERE comporter.idAlb = " . $_GET["id"] . " AND photos.visible = 1";
